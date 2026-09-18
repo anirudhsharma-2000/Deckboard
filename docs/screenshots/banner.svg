@@ -1,0 +1,67 @@
+<svg width="1280" height="320" viewBox="0 0 1280 320" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1280" y2="320" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0a0a0a"/>
+      <stop offset="1" stop-color="#111113"/>
+    </linearGradient>
+    <linearGradient id="accent1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#34d399"/>
+      <stop offset="1" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="accent2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#60a5fa"/>
+      <stop offset="1" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="accent3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f472b6"/>
+      <stop offset="1" stop-color="#db2777"/>
+    </linearGradient>
+    <linearGradient id="accent4" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fbbf24"/>
+      <stop offset="1" stop-color="#d97706"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1280" height="320" fill="url(#bg)"/>
+
+  <!-- faint grid texture -->
+  <g opacity="0.05" stroke="#ffffff" stroke-width="1">
+    <path d="M0 40 H1280 M0 80 H1280 M0 120 H1280 M0 160 H1280 M0 200 H1280 M0 240 H1280 M0 280 H1280"/>
+    <path d="M80 0 V320 M160 0 V320 M240 0 V320 M1040 0 V320 M1120 0 V320 M1200 0 V320"/>
+  </g>
+
+  <!-- phone remote silhouette -->
+  <g transform="translate(860,58)">
+    <rect x="0" y="0" width="200" height="204" rx="20" fill="#18181b" stroke="#2e2e33" stroke-width="2"/>
+    <g transform="translate(18,18)">
+      <rect x="0" y="0" width="46" height="46" rx="10" fill="url(#accent1)"/>
+      <rect x="55" y="0" width="46" height="46" rx="10" fill="url(#accent2)"/>
+      <rect x="110" y="0" width="46" height="46" rx="10" fill="url(#accent3)"/>
+      <rect x="0" y="55" width="46" height="46" rx="10" fill="url(#accent4)"/>
+      <rect x="55" y="55" width="46" height="46" rx="10" fill="#27272a"/>
+      <rect x="110" y="55" width="46" height="46" rx="10" fill="#27272a"/>
+      <rect x="0" y="110" width="46" height="46" rx="10" fill="#27272a"/>
+      <rect x="55" y="110" width="46" height="46" rx="10" fill="#27272a"/>
+      <rect x="110" y="110" width="46" height="46" rx="10" fill="#27272a"/>
+    </g>
+  </g>
+
+  <!-- connection line to a small "PC" glyph -->
+  <g stroke="#3f3f46" stroke-width="2" stroke-dasharray="5 6" fill="none">
+    <path d="M860 160 C 800 160, 780 160, 760 160"/>
+  </g>
+  <circle cx="855" cy="160" r="4" fill="#34d399"/>
+  <circle cx="765" cy="160" r="4" fill="#34d399"/>
+
+  <g transform="translate(700,132)">
+    <rect x="0" y="0" width="60" height="44" rx="6" fill="#18181b" stroke="#2e2e33" stroke-width="2"/>
+    <rect x="20" y="44" width="20" height="8" fill="#2e2e33"/>
+    <rect x="10" y="52" width="40" height="4" rx="2" fill="#2e2e33"/>
+  </g>
+
+  <!-- wordmark -->
+  <g transform="translate(80,110)">
+    <text x="0" y="46" font-family="'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="64" font-weight="700" fill="#fafafa">DeckBoard</text>
+    <text x="4" y="86" font-family="'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="20" fill="#a1a1aa">Your phone, remote-controlling your desktop over LAN</text>
+  </g>
+</svg>
