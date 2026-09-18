@@ -39,6 +39,12 @@ No accounts, no telemetry, no internet dependency — pairing happens via a QR c
 **Configure server behavior from Settings**
 <img src="docs/screenshots/dashboard-settings.png" alt="Settings panel: autostart, active-app profiles, phone background, OBS integration" width="820" />
 
+<br/>
+
+**Android app — pairing screen and the button grid in action**
+
+<img src="docs/screenshots/android-pairing.jpg" alt="Android app pairing screen" width="260" />&nbsp;&nbsp;<img src="docs/screenshots/android-button-grid.jpg" alt="Android app button grid, connected" width="260" />
+
 </div>
 
 ## How it fits together
