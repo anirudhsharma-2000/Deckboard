@@ -16,6 +16,7 @@ export function SettingsPanel() {
   const [settings, setSettings] = useState<Settings | null>(null);
   const [busy, setBusy] = useState(false);
   const [uploadingBackground, setUploadingBackground] = useState(false);
+  const [backgroundError, setBackgroundError] = useState<string | null>(null);
 
   useEffect(() => {
     fetch(`${apiBase()}/api/settings`)
@@ -38,14 +39,19 @@ export function SettingsPanel() {
 
   async function uploadBackground(file: File) {
     setUploadingBackground(true);
+    setBackgroundError(null);
     try {
       const formData = new FormData();
       formData.append("image", file);
       const res = await fetch(`${apiBase()}/api/settings/background`, { method: "POST", body: formData });
+      const data = await res.json().catch(() => null);
       if (res.ok) {
-        const data = await res.json();
         setSettings((prev) => (prev ? { ...prev, background: data.background } : prev));
+      } else {
+        setBackgroundError(data?.error ?? "Upload failed");
       }
+    } catch {
+      setBackgroundError("Upload failed — check the server is reachable");
     } finally {
       setUploadingBackground(false);
     }
@@ -177,6 +183,7 @@ export function SettingsPanel() {
             }}
           />
         </label>
+        {backgroundError && <p className="mt-2 text-sm text-red-500">{backgroundError}</p>}
       </div>
 
       <div className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm dark:border-neutral-800 dark:bg-neutral-900">

@@ -1,5 +1,5 @@
-import express, { type Express } from "express";
-import multer from "multer";
+import express, { type Express, type ErrorRequestHandler } from "express";
+import multer, { MulterError } from "multer";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { getActiveSession } from "../pairing/pairingService.js";
@@ -139,14 +139,24 @@ export function createApp(): Express {
     res.json({ presets: BACKGROUND_PRESETS });
   });
 
-  app.post("/api/settings/background", backgroundUpload.single("image"), (req, res) => {
-    if (!req.file) {
-      res.status(400).json({ error: "No image uploaded (or it wasn't an image file)" });
-      return;
-    }
-    setCustomBackgroundFile(req.file.filename);
-    broadcastBackgroundSnapshot();
-    res.json({ background: getActiveBackground() });
+  app.post("/api/settings/background", (req, res, next) => {
+    backgroundUpload.single("image")(req, res, (err) => {
+      if (err instanceof MulterError && err.code === "LIMIT_FILE_SIZE") {
+        res.status(413).json({ error: "Image is too large (8MB max)" });
+        return;
+      }
+      if (err) {
+        next(err);
+        return;
+      }
+      if (!req.file) {
+        res.status(400).json({ error: "No image uploaded (or it wasn't an image file)" });
+        return;
+      }
+      setCustomBackgroundFile(req.file.filename);
+      broadcastBackgroundSnapshot();
+      res.json({ background: getActiveBackground() });
+    });
   });
 
   app.post("/api/settings/background/preset", (req, res) => {
@@ -178,6 +188,13 @@ export function createApp(): Express {
   });
 
   app.use(express.static(WEB_DIST));
+
+  const handleError: ErrorRequestHandler = (err, req, res, _next) => {
+    logger.error(`Unhandled error on ${req.method} ${req.path}:`, err instanceof Error ? err.message : err);
+    if (res.headersSent) return;
+    res.status(500).json({ error: "Internal server error" });
+  };
+  app.use(handleError);
 
   return app;
 }
