@@ -1,0 +1,19 @@
+{
+  "name": "deckboard",
+  "private": true,
+  "workspaces": [
+    "shared",
+    "server",
+    "web"
+  ],
+  "scripts": {
+    "dev": "npm run build -w shared && concurrently -n shared,server,web -c magenta,blue,green \"npm run build -w shared -- --watch\" \"npm run dev -w server\" \"npm run dev -w web\"",
+    "build": "npm run build -w shared && npm run build -w web && npm run build -w server",
+    "start": "npm run start -w server",
+    "lint": "npm run lint -w server && npm run lint -w web",
+    "typecheck": "npm run build -w shared && npm run typecheck -w server && npm run typecheck -w web"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

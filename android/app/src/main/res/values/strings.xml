@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">DeckBoard</string>
+    <string name="widget_description">Quick access to your first page\'s buttons</string>
+    <string name="widget_loading">Loading…</string>
+</resources>

@@ -1,0 +1,26 @@
+node_modules/
+dist/
+out/
+.next/
+*.tsbuildinfo
+.DS_Store
+.env
+.env.local
+
+# server runtime state
+server/data/*.json
+server/data/*.sh
+server/data/icons/*
+!server/data/icons/.gitkeep
+server/data/backgrounds/*
+!server/data/backgrounds/.gitkeep
+
+# Android
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/.idea/
+android/*.iml
+android/captures/
+android/.cxx/
